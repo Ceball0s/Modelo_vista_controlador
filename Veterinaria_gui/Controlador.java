@@ -35,4 +35,16 @@ public class Controlador {
         vista.actualizarLista(modelo.get_listaAnimales()); // Llamar al método de la vista para actualizar la lista de animales con los datos del modelo
         vista.mostrarMensaje("Animal agregado con éxito."); // Mostrar un mensaje de confirmación en la vista
     }
+       // Método para buscar un animal por su nombre en el modelo y mostrarlo en la vista
+    public void buscarAnimal(String nombre) {
+        Animal animal = modelo.buscarAnimal(nombre); // Llamar al método del modelo para buscar el animal por su nombre
+        if (animal != null) { // Si se encontró el animal
+            vista.mostrarAnimal(animal); // Llamar al método de la vista para mostrar los datos del animal en los campos de texto
+            vista.mostrarMensaje("Animal encontrado."); // Mostrar un mensaje de confirmación en la vista
+
+        } else { // Si no se encontró el animal
+            vista.mostrarMensaje("No se encontró ningún animal con ese nombre."); // Mostrar un mensaje de error en la vista
+        }
+    }
+
 }
