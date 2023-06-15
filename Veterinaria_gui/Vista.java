@@ -439,5 +439,29 @@ public class Vista extends JFrame{
         panelBprincipales.add(panel_lista_animal);  
     }
 
+    private void apagarTodo(){
+        panel_crear_gato.setVisible(false);
+        panel_crear_perro.setVisible(false);
+        panel_lista_animal.setVisible(false);
+    }
 
+    private void mostrar_crear_gatos(){
+        apagarTodo();
+        panel_crear_gato.setVisible(true);
+        revalidate();
+        repaint();
+    }
+
+    private void mostrar_crear_perro(){
+        apagarTodo();
+        panel_crear_perro.setVisible(true);
+        revalidate();
+        repaint();
+    }
+    private void MostrarLista(){
+        apagarTodo();
+        panel_lista_animal.setVisible(true);
+        revalidate();
+        repaint();
+    }
 }
