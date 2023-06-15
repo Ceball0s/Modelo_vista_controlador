@@ -195,7 +195,10 @@ public class Vista extends JFrame{
 //============================================================================
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     public void crearPanelPerro() {
         // Crear un panel
         panel_crear_perro = new JPanel();
@@ -268,6 +271,9 @@ public class Vista extends JFrame{
 
     }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     public void crearPanelGato() {
         // Crear un panel
@@ -335,64 +341,7 @@ public class Vista extends JFrame{
 
     }
 
-    public void crearPanelPerro() {
-        // Crear un panel
-        panel_crear_perro = new JPanel();
-
-        // Crear los componentes del panel
-        JLabel titulo = new JLabel("Agregar perro");
-
-        // Cambiar la fuente del título a Arial negrita de 18 puntos
-        titulo.setFont(new Font("Arial", Font.BOLD, 18));
-
-        JLabel nombreLabel = new JLabel("Nombre:");
-        JTextField nombreField = new JTextField(10);
-        JLabel vacunasLabel = new JLabel("Vacunado:");
-        JCheckBox vacunasCheck = new JCheckBox();
-        JLabel costoLabel = new JLabel("Costo:");
-        JTextField costoField = new JTextField(10);
-        JLabel paisLabel = new JLabel("Pais:");
-        JTextField paisField = new JTextField(10);
-        JLabel razaLabel = new JLabel("Raza:");
-        JTextField razaField = new JTextField(10);
-        JButton crearButton = new JButton("Crear");
-
-        // Agregar un listener al botón crear
-        crearButton.addActionListener(e -> {
-
-        });
-
-        // Agregar los componentes al panel
-        panel_crear_perro.add(titulo);
-        panel_crear_perro.add(new JLabel(""));
-        panel_crear_perro.add(nombreLabel);
-        panel_crear_perro.add(nombreField);
-        panel_crear_perro.add(vacunasLabel);
-        panel_crear_perro.add(vacunasCheck);
-        panel_crear_perro.add(costoLabel);
-        panel_crear_perro.add(costoField);
-        panel_crear_perro.add(paisLabel);
-        panel_crear_perro.add(paisField);
-        panel_crear_perro.add(razaLabel);
-        panel_crear_perro.add(razaField);
-        panel_crear_perro.add(new JLabel(""));
-        panel_crear_perro.add(crearButton);
-
-        // Establecer el tamaño y el layout del panel
-        //panel_crear_perro.setPreferredSize(new Dimension(300, 200));
-
-        // Usar un GridLayout de 5 filas y 2 columnas para el panel
-        panel_crear_perro.setLayout(new GridLayout(7, 1));
-        panel_crear_perro.setBackground(Color.WHITE);
-        panel_crear_perro.setSize(300, 300);
-        panel_crear_perro.setVisible(false);
-        panel_crear_perro.setBounds(200, 0, 300, 300);
-        // Establecer la operación de cierre del JFrame
-        panelBprincipales.add(panel_crear_perro);
-
-    }
-    
-  public void crearPanelLista() {
+    public void crearPanelLista() {
         // Inicializar el JList con un modelo de lista que contenga los animales
         //listaAnimales = new JList<>(new DefaultListModel<>());
         // Agregar un renderizador personalizado al JList para que muestre el nombre y el tipo de animal
@@ -514,7 +463,81 @@ public class Vista extends JFrame{
         panelBprincipales.add(panel_lista_animal);  
     }
 
-    private void apagarTodo(){
+    private class AnimalRenderer implements ListCellRenderer<Animal> {
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Animal> list, Animal value, int index,boolean isSelected, boolean cellHasFocus) {
+            // Crear un JLabel con el nombre y el tipo de animal
+            JLabel label = new JLabel(value.getNombre() + " (" + value.getClass().getSimpleName() + ")");
+            label.setOpaque(true);
+
+            // Cambiar el color del fondo y del texto según si el elemento está seleccionado o no
+            if (isSelected) {
+                label.setBackground(list.getSelectionBackground());
+                label.setForeground(list.getSelectionForeground());
+            } else {
+                label.setBackground(list.getBackground());
+                label.setForeground(list.getForeground());
+            }
+
+            return label;
+        }
+    }
+
+    // Método para asignar el controlador a la vista
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    // Método para mostrar un mensaje en una ventana emergente
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    // Método para mostrar los datos de un animal en los campos de texto
+    public void mostrarAnimal(Animal animal) {
+        if (animal != null) { // Si el animal existe
+            txtNombre.setText(animal.getNombre());
+            
+            txtPais.setText(animal.getPais());
+            txtCosto.setText(String.valueOf(animal.getCosto()));
+            chkVacuna.setSelected(animal.getVacunasMalota());
+            if (animal instanceof Perro) { // Si el animal es un perro
+                Perro perro = (Perro) animal; // Hacer un casting a Perro
+                txtRaza.setText(perro.getRaza());
+                txtColor.setText("");
+                txtTipo.setText("Perro");
+            } else if (animal instanceof Gato) { // Si el animal es un gato
+                Gato gato = (Gato) animal; // Hacer un casting a Gato
+                txtRaza.setText("");
+                txtColor.setText(gato.getColor());
+                txtTipo.setText("Gato");
+            }
+        } else { // Si el animal no existe
+            limpiarCampos(); // Limpiar los campos de texto
+        }
+    }
+
+    // Método para limpiar los campos de texto
+    public void limpiarCampos() {
+        txtNombre.setText("");
+        txtTipo.setText("");
+        txtPais.setText("");
+        txtCosto.setText("");
+        chkVacuna.setSelected(false);
+        txtRaza.setText("");
+        txtColor.setText("");
+    }
+
+
+    public void actualizarLista(ArrayList<Animal> lista) {
+        modelo.clear(); // Limpiar el modelo de la lista
+        for (Animal animal : lista) { // Recorrer la lista de animales del modelo
+            modelo.addElement(animal); // Agregar cada animal al modelo de la lista
+        }
+        listaAnimales.repaint(); // Repintar la lista para mostrar los cambios
+     }
+     private void apagarTodo(){
         panel_crear_gato.setVisible(false);
         panel_crear_perro.setVisible(false);
         panel_lista_animal.setVisible(false);
@@ -540,3 +563,4 @@ public class Vista extends JFrame{
         repaint();
     }
 }
+
