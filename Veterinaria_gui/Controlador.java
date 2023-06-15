@@ -5,10 +5,10 @@ public class Controlador {
 
     // Atributos para el modelo y la vista
     private Veterinaria modelo;
-    private Vista vista;
+    private VistaGrafica vista;
 
     // Constructor
-    public Controlador(Veterinaria modelo, Vista vista) {
+    public Controlador(Veterinaria modelo, VistaGrafica vista) {
         this.modelo = modelo;
         this.vista = vista;
         vista.setControlador(this); // Asignar el controlador a la vista

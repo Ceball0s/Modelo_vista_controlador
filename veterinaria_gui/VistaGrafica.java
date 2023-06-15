@@ -34,7 +34,7 @@ import java.awt.GridBagConstraints;
 
 import java.util.ArrayList;
 
-public class VistaGrafica {
+public class VistaGrafica extends Vista{
     private JFrame frame;
     private JList<Animal> listaAnimales;
     private DefaultListModel<Animal> modelo; 
@@ -536,21 +536,21 @@ public class VistaGrafica {
     private void mostrar_crear_gatos(){
         apagarTodo();
         panel_crear_gato.setVisible(true);
-        revalidate();
-        repaint();
+        frame.revalidate();
+        frame.repaint();
     }
 
     private void mostrar_crear_perro(){
         apagarTodo();
         panel_crear_perro.setVisible(true);
-        revalidate();
-        repaint();
+        frame.revalidate();
+        frame.repaint();
     }
     private void MostrarLista(){
         apagarTodo();
         panel_lista_animal.setVisible(true);
-        revalidate();
-        repaint();
+        frame.revalidate();
+        frame.repaint();
     }
 }
 
