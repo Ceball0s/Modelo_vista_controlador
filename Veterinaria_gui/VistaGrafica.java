@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 
 import java.awt.Color;
 import java.awt.Component;
