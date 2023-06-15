@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 import java.util.ArrayList;
 
 public abstract class Vista {
@@ -19,7 +19,7 @@ public abstract class Vista {
     public abstract void actualizarLista(ArrayList<Animal> listaDulces);
 
     // Método abstracto para mostrar los datos de un Dulce en los campos de texto
-    public abstract void mostrarDulce(Animal animal);
+    public abstract void mostrarAnimal(Animal animal);
 
     // Método abstracto para mostrar un mensaje en la consola o en la ventana
     public abstract void mostrarMensaje(String mensaje);

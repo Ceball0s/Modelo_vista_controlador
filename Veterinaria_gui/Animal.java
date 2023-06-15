@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 // Clase madre animales
 public abstract class Animal {
     // Atributos comunes

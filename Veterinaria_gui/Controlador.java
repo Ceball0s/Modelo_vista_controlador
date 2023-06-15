@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 
 // Clase Controlador
 public class Controlador {

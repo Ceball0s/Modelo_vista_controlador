@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 
 import java.util.ArrayList; // Importar la clase ArrayList para manejar listas dinámicas
 import java.util.Scanner; // Importar la clase Scanner para leer datos del teclado

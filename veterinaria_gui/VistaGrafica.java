@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -485,6 +485,7 @@ public class VistaGrafica extends Vista{
     }
 
     // Método para mostrar los datos de un animal en los campos de texto
+    @Override
     public void mostrarAnimal(Animal animal) {
         if (animal != null) { // Si el animal existe
             txtNombre.setText(animal.getNombre());
@@ -552,5 +553,11 @@ public class VistaGrafica extends Vista{
         frame.revalidate();
         frame.repaint();
     }
+    // Método para hacer visible la ventana
+    @Override
+    public void setVisible(boolean visible) {
+        frame.setVisible(visible); // Llamar al método setVisible del frame
+    }
 }
+
 

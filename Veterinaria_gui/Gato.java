@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 //import veterinaria.Animal; // Descomentar esta linea si Animal esta en otro paquete
 
 // Clase hija gatos

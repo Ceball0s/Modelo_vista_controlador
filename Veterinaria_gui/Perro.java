@@ -1,4 +1,4 @@
-package veterinaria_gui;
+package Veterinaria_gui;
 // Clase hija Perro
 public class Perro extends Animal {
     // Atributo específico
