@@ -3,7 +3,7 @@ package veterinaria_gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +34,8 @@ import java.awt.GridBagConstraints;
 
 import java.util.ArrayList;
 
-public class Vista extends JFrame{
+public class VistaGrafica {
+    private JFrame frame;
     private JList<Animal> listaAnimales;
     private DefaultListModel<Animal> modelo; 
     public JPanel panelBprincipales;
@@ -45,24 +46,14 @@ public class Vista extends JFrame{
     public JPanel panel_lista_animal;
 
     // Atributos para los elementos gráficos
-    private JLabel lblNombre;
     private JTextField txtNombre;
-    private JLabel lblTipo;
     private JTextField txtTipo;
-    private JLabel lblPais;
     private JTextField txtPais;
-    private JLabel lblCosto;
     private JTextField txtCosto;
-    private JLabel lblVacuna;
     private JCheckBox chkVacuna;
-    private JLabel lblRaza;
     private JTextField txtRaza;
-    private JLabel lblColor;
     private JTextField txtColor;
-    private JButton btnAgregar;
-    private JButton btnBuscar;
-    private JButton btnActualizar;
-    private JList lstAnimales;
+
 
     //CrearMesas manejoM = new CrearMesas();
 
@@ -75,21 +66,35 @@ public class Vista extends JFrame{
     private Controlador controlador;
 
     
-    public Vista(){  //Creamos el constructor y dentro de este creamos el JFrame
+    public VistaGrafica(){  //Creamos el constructor y dentro de este creamos el JFrame
 
-        setTitle("Veterinaria");
-        setSize(700, 450);
-        setLocationRelativeTo(null);  
+        frame = new JFrame(); // Crear el objeto JFrame
         
+        // Inicializar los demás componentes gráficos del frame
+        frame.setTitle("Veterinaria");
+        frame.setSize(700, 450);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        frame.setLocationRelativeTo(null);  
+
+
+        frame.setVisible(true); //Hacemos visible la ventana
         iniciarComponentes();
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
+
+        frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                dispose();
+                frame.dispose();
             }
         });
-        setVisible(true); //Hacemos visible la ventana
+
+        // Crear una instancia del controlador y pasarle el modelo y la vista
+        controlador = new Controlador(new Veterinaria(), this);
+
+        // Llamar al método del controlador para inicializar la vista
+        controlador.iniciarVista();
+
+
     }    
 
 //============================================================================
@@ -101,12 +106,6 @@ public class Vista extends JFrame{
         crearPanelPerro();
         crearPanelGato();
         crearPanelLista();
-
-        // Crear una instancia del controlador y pasarle el modelo y la vista
-        controlador = new Controlador(new Veterinaria(), this);
-
-        // Llamar al método del controlador para inicializar la vista
-        controlador.iniciarVista();
         
     }
 //============================================================================
@@ -116,7 +115,7 @@ public class Vista extends JFrame{
         panelBprincipales.setBackground(Color.WHITE);
         // establecemos el color del panel
         panelBprincipales.setSize(300, 600);
-        this.getContentPane().add(panelBprincipales);//agregamos el panel a la ventana
+        frame.getContentPane().add(panelBprincipales);//agregamos el panel a la ventana
 
         //panel donde se agregan los botones principales
         panelBotones = new JPanel();
@@ -482,7 +481,7 @@ public class Vista extends JFrame{
 
     // Método para mostrar un mensaje en una ventana emergente
     public void mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(frame, mensaje);
     }
 
     // Método para mostrar los datos de un animal en los campos de texto
