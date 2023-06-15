@@ -194,78 +194,6 @@ public class Vista extends JFrame{
 
 //============================================================================
 
-    public void crearPanelPerro() {
-        // Crear un panel
-        panel_crear_perro = new JPanel();
-
-        // Crear los componentes del panel
-        JLabel titulo = new JLabel("Agregar perro");
-
-        // Cambiar la fuente del título a Arial negrita de 18 puntos
-        titulo.setFont(new Font("Arial", Font.BOLD, 18));
-
-        JLabel nombreLabel = new JLabel("Nombre:");
-        JTextField nombreField = new JTextField(10);
-        JLabel vacunasLabel = new JLabel("Vacunado:");
-        JCheckBox vacunasCheck = new JCheckBox();
-        JLabel costoLabel = new JLabel("Costo:");
-        JTextField costoField = new JTextField(10);
-        JLabel paisLabel = new JLabel("Pais:");
-        JTextField paisField = new JTextField(10);
-        JLabel razaLabel = new JLabel("Raza:");
-        JTextField razaField = new JTextField(10);
-        JButton crearButton = new JButton("Crear");
-
-        // Agregar un listener al botón crear
-        crearButton.addActionListener(e -> {
-            // Obtener los datos del panel
-            String nombre = nombreField.getText();
-            boolean vacunas = vacunasCheck.isSelected();
-            double costo = Double.parseDouble(costoField.getText());
-            String pais = paisField.getText();
-            String raza = razaField.getText();
-
-            // Llamar al método del controlador para agregar un perro al modelo y a la vista
-            controlador.agregarAnimal(nombre, "perro", pais, costo, vacunas, raza, "");
-
-            // Limpiar los campos del panel
-            nombreField.setText("");
-            vacunasCheck.setSelected(false);
-            costoField.setText("");
-            paisField.setText("");
-            razaField.setText("");
-        });
-
-        // Agregar los componentes al panel
-        panel_crear_perro.add(titulo);
-        panel_crear_perro.add(new JLabel(""));
-        panel_crear_perro.add(nombreLabel);
-        panel_crear_perro.add(nombreField);
-        panel_crear_perro.add(vacunasLabel);
-        panel_crear_perro.add(vacunasCheck);
-        panel_crear_perro.add(costoLabel);
-        panel_crear_perro.add(costoField);
-        panel_crear_perro.add(paisLabel);
-        panel_crear_perro.add(paisField);
-        panel_crear_perro.add(razaLabel);
-        panel_crear_perro.add(razaField);
-        panel_crear_perro.add(new JLabel(""));
-        panel_crear_perro.add(crearButton);
-
-        // Establecer el tamaño y el layout del panel
-        //panel_crear_perro.setPreferredSize(new Dimension(300, 200));
-
-        // Usar un GridLayout de 5 filas y 2 columnas para el panel
-        panel_crear_perro.setLayout(new GridLayout(7, 1));
-        panel_crear_perro.setBackground(Color.WHITE);
-        panel_crear_perro.setSize(300, 300);
-        panel_crear_perro.setVisible(false);
-        panel_crear_perro.setBounds(200, 0, 300, 300);
-        // Establecer la operación de cierre del JFrame
-        panelBprincipales.add(panel_crear_perro);
-
-    }
-
     public void crearPanelGato() {
         // Crear un panel
         panel_crear_gato = new JPanel();
@@ -330,6 +258,153 @@ public class Vista extends JFrame{
 
         panelBprincipales.add(panel_crear_gato);
 
+    }
+
+    public void crearPanelPerro() {
+        // Crear un panel
+        panel_crear_perro = new JPanel();
+
+        // Crear los componentes del panel
+        JLabel titulo = new JLabel("Agregar perro");
+
+        // Cambiar la fuente del título a Arial negrita de 18 puntos
+        titulo.setFont(new Font("Arial", Font.BOLD, 18));
+
+        JLabel nombreLabel = new JLabel("Nombre:");
+        JTextField nombreField = new JTextField(10);
+        JLabel vacunasLabel = new JLabel("Vacunado:");
+        JCheckBox vacunasCheck = new JCheckBox();
+        JLabel costoLabel = new JLabel("Costo:");
+        JTextField costoField = new JTextField(10);
+        JLabel paisLabel = new JLabel("Pais:");
+        JTextField paisField = new JTextField(10);
+        JLabel razaLabel = new JLabel("Raza:");
+        JTextField razaField = new JTextField(10);
+        JButton crearButton = new JButton("Crear");
+
+        // Agregar un listener al botón crear
+        crearButton.addActionListener(e -> {
+
+        });
+
+        // Agregar los componentes al panel
+        panel_crear_perro.add(titulo);
+        panel_crear_perro.add(new JLabel(""));
+        panel_crear_perro.add(nombreLabel);
+        panel_crear_perro.add(nombreField);
+        panel_crear_perro.add(vacunasLabel);
+        panel_crear_perro.add(vacunasCheck);
+        panel_crear_perro.add(costoLabel);
+        panel_crear_perro.add(costoField);
+        panel_crear_perro.add(paisLabel);
+        panel_crear_perro.add(paisField);
+        panel_crear_perro.add(razaLabel);
+        panel_crear_perro.add(razaField);
+        panel_crear_perro.add(new JLabel(""));
+        panel_crear_perro.add(crearButton);
+
+        // Establecer el tamaño y el layout del panel
+        //panel_crear_perro.setPreferredSize(new Dimension(300, 200));
+
+        // Usar un GridLayout de 5 filas y 2 columnas para el panel
+        panel_crear_perro.setLayout(new GridLayout(7, 1));
+        panel_crear_perro.setBackground(Color.WHITE);
+        panel_crear_perro.setSize(300, 300);
+        panel_crear_perro.setVisible(false);
+        panel_crear_perro.setBounds(200, 0, 300, 300);
+        // Establecer la operación de cierre del JFrame
+        panelBprincipales.add(panel_crear_perro);
+
+    }
+    public void crearPanelLista() {
+        // Inicializar el JList con un modelo de lista que contenga los animales
+        //listaAnimales = new JList<>(new DefaultListModel<>());
+        // Agregar un renderizador personalizado al JList para que muestre el nombre y el tipo de animal
+        listaAnimales.setCellRenderer(new AnimalRenderer());
+
+        // Crear un botón de modificar
+        JButton botonModificar = new JButton("Modificar");
+
+        // Agregar un escuchador de eventos al botón para que se ejecute una acción cuando se haga clic en él
+        botonModificar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener el objeto seleccionado en el JList y verificar que no sea nulo
+                }
+            }
+        });
+
+        // Crear un botón con un texto que indique la acción de eliminar
+        JButton botonEliminar = new JButton("Eliminar");
+
+        // Agregar un escuchador de eventos al botón para que se ejecute una acción cuando se haga clic en él
+        botonEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener el objeto seleccionado en el JList y verificar que no sea nulo
+                Animal animal = listaAnimales.getSelectedValue();
+                if (animal != null) {
+                    // Llamar al método del controlador para eliminar el animal del modelo y de la vista
+                    controlador.eliminarAnimal(animal.getNombre());
+                }
+            }
+        });
+
+        // Crear una caja de texto con un texto vacío
+        JTextField campoBuscar = new JTextField();
+        campoBuscar.setSize(100, 300);
+        campoBuscar.setPreferredSize(new Dimension(80, 50));
+        // Crear un botón con un texto que indique la acción de buscar
+        JButton botonBuscar = new JButton("Buscar");
+        botonBuscar.setPreferredSize(new Dimension(80, 50));
+        // Agregar un escuchador de eventos al botón para que se ejecute una acción cuando se haga clic en él
+        botonBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        
+        
+        // Agregar la caja de texto y el botón al panel
+        // Crear un GridLayout con dos filas y una columna
+
+
+
+
+        // Crear un panel principal y agregar el JList al panel
+        JPanel panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(new FlowLayout());
+        panelPrincipal.setSize(100, 100);
+        panelPrincipal.setVisible(true);
+        
+        panelPrincipal.add(campoBuscar);
+        panelPrincipal.add(botonBuscar);
+
+        JPanel panel_eliminar_modificar = new JPanel();
+        panel_eliminar_modificar.setLayout(new BorderLayout());
+        // Agregar el panel al GridLayout
+        // Agregar el panel secundario y la lista al panel principal
+        
+        panel_eliminar_modificar.add(botonEliminar,BorderLayout.WEST);
+        panel_eliminar_modificar.add(botonModificar,BorderLayout.EAST);
+
+        
+        panel_lista_animal = new JPanel(); // Asignarle un objeto JPanel a la variable
+        panel_lista_animal.setLayout(new BorderLayout());
+
+        // Configurar el tamaño y la ubicación del panel
+        panel_lista_animal.setSize(450, 400);
+        //panel_lista_animal.setPreferredSize(new Dimension(500, 500));
+        panel_lista_animal.setBounds(200, 0, 450, 400);
+        panel_lista_animal.setVisible(false);
+        // Agregar el panel al JFrame y hacerlo visible
+        
+        panel_lista_animal.add(panelPrincipal,BorderLayout.NORTH);
+        panel_lista_animal.add(listaAnimales,BorderLayout.CENTER);
+        panel_lista_animal.add(panel_eliminar_modificar,BorderLayout.SOUTH);
+
+        panelBprincipales.add(panel_lista_animal);  
     }
 
 }
