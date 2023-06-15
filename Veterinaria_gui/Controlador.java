@@ -48,7 +48,7 @@ public class Controlador {
         }
     }
 
-    // Método para actualizar un animal del modelo y de la vista
+    // Metodo para actualizar un animal del modelo y de la vista
     public void actualizarAnimal(String nombre_viejo,String nombre, String pais, double costo, boolean vacuna, String raza_o_color) {
         Animal animal = modelo.buscarAnimal(nombre_viejo); // Llamar al método del modelo para buscar el animal por su nombre
         if (animal != null) { // Si se encontró el animal
