@@ -341,12 +341,7 @@ public class Vista extends JFrame{
         botonEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obtener el objeto seleccionado en el JList y verificar que no sea nulo
-                Animal animal = listaAnimales.getSelectedValue();
-                if (animal != null) {
-                    // Llamar al método del controlador para eliminar el animal del modelo y de la vista
-                    controlador.eliminarAnimal(animal.getNombre());
-                }
+
             }
         });
 
