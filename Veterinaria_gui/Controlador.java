@@ -85,4 +85,6 @@ public class Controlador {
     public boolean eliminarAnimal(String nombre) {
         return modelo.eliminarAnimal(nombre); // Buscar el animal por su nombre
     }
+    
+    
 }
