@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
-
+import javax.swing.JComboBox;
 import javax.swing.JList; 
 import javax.swing.DefaultListModel;
 
@@ -488,29 +488,45 @@ public class VistaGrafica extends Vista{
     @Override
     public void mostrarAnimal(Animal animal) {
         if (animal != null) { // Si el animal existe
-            txtNombre.setText(animal.getNombre());
-            
-            txtPais.setText(animal.getPais());
-            txtCosto.setText(String.valueOf(animal.getCosto()));
-            chkVacuna.setSelected(animal.getVacunasMalota());
+
+            String tipo = "";
+            String color_o_raza="";
+            String vacuna = "";
             if (animal instanceof Perro) { // Si el animal es un perro
                 Perro perro = (Perro) animal; // Hacer un casting a Perro
                 txtRaza.setText(perro.getRaza());
                 txtColor.setText("");
                 txtTipo.setText("Perro");
             } else if (animal instanceof Gato) { // Si el animal es un gato
-                Gato gato = (Gato) animal; // Hacer un casting a Gato
-                txtRaza.setText("");
-                txtColor.setText(gato.getColor());
-                txtTipo.setText("Gato");
+                tipo = "Gato";
+                color_o_raza= ((Gato) animal).getColor();
             }
+            if (animal.getVacunasMalota()){
+                vacuna = "esta vacunado";
+                
+            }else{
+                vacuna = "no esta vacunado";
+            }
+
+            Object[] campos = {
+                    "Nombre: ", animal.getNombre(),
+                    "tipo: ", tipo,
+                    "pais: ", animal.getPais(),
+                    "costo: ",animal.getCosto(),
+                    vacuna,
+                    "Color o raza: ",color_o_raza 
+
+            };
+            int opcion = JOptionPane.showConfirmDialog(null, campos, "Modificar Dulce", JOptionPane.OK_CANCEL_OPTION);
+            
         } else { // Si el animal no existe
-            limpiarCampos(); // Limpiar los campos de texto
+            mostrarMensaje("No se encontró el animal");  // Limpiar los campos de texto
         }
     }
 
     // Método para limpiar los campos de texto
     public void limpiarCampos() {
+        /* 
         txtNombre.setText("");
         txtTipo.setText("");
         txtPais.setText("");
@@ -518,6 +534,7 @@ public class VistaGrafica extends Vista{
         chkVacuna.setSelected(false);
         txtRaza.setText("");
         txtColor.setText("");
+        */
     }
 
 
