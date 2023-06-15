@@ -316,7 +316,8 @@ public class Vista extends JFrame{
         panelBprincipales.add(panel_crear_perro);
 
     }
-    public void crearPanelLista() {
+    
+  public void crearPanelLista() {
         // Inicializar el JList con un modelo de lista que contenga los animales
         //listaAnimales = new JList<>(new DefaultListModel<>());
         // Agregar un renderizador personalizado al JList para que muestre el nombre y el tipo de animal
@@ -330,6 +331,32 @@ public class Vista extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtener el objeto seleccionado en el JList y verificar que no sea nulo
+                Animal animal = listaAnimales.getSelectedValue();
+                if (animal != null) {
+                    // Crear una ventana emergente con campos de texto para ingresar los nuevos datos del objeto
+                    JTextField nombreField = new JTextField(animal.getNombre());
+                    JTextField costoField = new JTextField(String.valueOf(animal.getCosto()));
+                    JTextField paisField = new JTextField(animal.getPais());
+                    JCheckBox vacunasBox = new JCheckBox("",animal.getVacunasMalota());
+                    JTextField atributoField;
+                    if (animal instanceof Perro) {
+                        atributoField = new JTextField(((Perro) animal).getRaza());
+                    } else {
+                        atributoField = new JTextField(((Gato) animal).getColor());
+                    }
+                    Object[] campos = {
+                            "Nombre:", nombreField,
+                            "Costo:", costoField,
+                            "Pais:", paisField,
+                            "Vacuna: ",vacunasBox,
+                            animal instanceof Perro ? "Raza:" : "Color:", atributoField
+                    };
+                    int opcion = JOptionPane.showConfirmDialog(null, campos, "Modificar animal", JOptionPane.OK_CANCEL_OPTION);
+                    // Si se presiona el botón OK, asignar los nuevos datos al objeto y actualizar el modelo de la lista
+                    if (opcion == JOptionPane.OK_OPTION) {
+                        controlador.actualizarAnimal(animal.getNombre(),nombreField.getText(),paisField.getText(),Double.parseDouble(costoField.getText()),vacunasBox.isSelected(),atributoField.getText());
+                    }
+                
                 }
             }
         });
@@ -341,7 +368,12 @@ public class Vista extends JFrame{
         botonEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Obtener el objeto seleccionado en el JList y verificar que no sea nulo
+                Animal animal = listaAnimales.getSelectedValue();
+                if (animal != null) {
+                    // Llamar al método del controlador para eliminar el animal del modelo y de la vista
+                    controlador.eliminarAnimal(animal.getNombre());
+                }
             }
         });
 
@@ -356,7 +388,12 @@ public class Vista extends JFrame{
         botonBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Obtener el texto de la caja de texto y verificar que no sea vacío
+                String nombre = campoBuscar.getText();
+                if (!nombre.isEmpty()) {
+                    // Llamar al método del controlador para buscar el animal por su nombre y seleccionarlo en la lista
+                    controlador.buscarAnimal(nombre);
+                }
             }
         });
         
@@ -401,5 +438,6 @@ public class Vista extends JFrame{
 
         panelBprincipales.add(panel_lista_animal);  
     }
+
 
 }
