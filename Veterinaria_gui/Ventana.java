@@ -34,7 +34,7 @@ import java.awt.GridBagConstraints;
 
 
 
-public class ventana extends JFrame{
+public class Ventana extends JFrame{
     private JList<Animal> listaAnimales;
     private DefaultListModel<Animal> modelo; 
     public JPanel panelBprincipales;
@@ -57,7 +57,7 @@ public class ventana extends JFrame{
     JButton botonLogin = new JButton();
 
     
-    public ventana(){  //Creamos el constructor y dentro de este creamos el JFrame
+    public Ventana(){  //Creamos el constructor y dentro de este creamos el JFrame
 
         setTitle("Veterinaria");
         setSize(700, 450);
