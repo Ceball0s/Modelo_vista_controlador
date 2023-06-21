@@ -47,6 +47,32 @@ public class Controlador {
             vista.mostrarMensaje("No se encontró ningún animal con ese nombre."); // Mostrar un mensaje de error en la vista
         }
     }
+     // Método para actualizar un animal del modelo y de la vista
+    public void actualizarAnimal(String nombre_viejo,String nombre, String pais, double costo, boolean vacuna, String raza_o_color) {
+        Animal animal = modelo.buscarAnimal(nombre_viejo); // Llamar al método del modelo para buscar el animal por su nombre
+        if (animal != null) { // Si se encontró el animal
+            if (animal instanceof Perro) { // Si el animal es un perro
+                Perro perro = (Perro) animal; // Hacer un casting a Perro
+                perro.setNombre(nombre); // Actualizar el nombre del perro
+                perro.setVacunasMalota(vacuna); // Actualizar las vacunas del perro
+                perro.setCosto(costo); // Actualizar el costo del perro
+                perro.setPais(pais); // Actualizar el país del perro
+                perro.setRaza(raza_o_color); // Actualizar la raza del perro
+
+            } else if (animal instanceof Gato) { // Si el animal es un gato
+                Gato gato = (Gato) animal; // Hacer un casting a Gato
+                gato.setNombre(nombre); // Actualizar el nombre del gato
+                gato.setVacunasMalota(vacuna); // Actualizar las vacunas del gato
+                gato.setCosto(costo); // Actualizar el costo del gato
+                gato.setPais(pais); // Actualizar el país del gato
+                gato.setColor(raza_o_color); // Actualizar el color del gato
+            }
+            vista.actualizarLista(modelo.get_listaAnimales()); // Llamar al método de la vista para actualizar la lista de animales con los datos del modelo
+            vista.mostrarMensaje("Animal actualizado con éxito."); // Mostrar un mensaje de confirmación en la vista
+        } else { // Si no se encontró el animal
+            vista.mostrarMensaje("No se encontró ningún animal con ese nombre."); // Mostrar un mensaje de error en la vista
+        }
+    }
 
     // Metodo para actualizar un animal del modelo y de la vista
     public void actualizarAnimal(String nombre_viejo,String nombre, String pais, double costo, boolean vacuna, String raza_o_color) {
